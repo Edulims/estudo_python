@@ -42,9 +42,6 @@ print(cumprimento_especial(geek='especial'))
 - **kwargs
 
 
-"""
-
-
 def minha_funcao(idade, nome, *args, solteiro=False, **kwargs):
     print(f'{nome} tem {idade} anos')
     print(args)
@@ -61,8 +58,67 @@ minha_funcao(19, 'Carla', 9, 4, 3, java=False, python=True)
 
 
 
+# Entenda por quê é importante manter a ordem dos parâmetros na declaração
+
+# Função com a ordem correta de parâmetros
+#def mostra_info(a, b, *args, instrutor='Geek', **kwargs):
+#    return [a, b, args, instrutor, kwargs]
+
+# Ordem incorreta de parâmetro
+def mostra_info(a, b, instrutor='Geek', *args, **kwargs):
+    return [a, b, args, instrutor, kwargs]
 
 
+a = 1
+b = 2
+args = (3,)
+instrutor = 'Geek'
+kwargs = {'sobrenome': 'University', 'cargo': 'Instrutor'}
+
+
+
+
+print(mostra_info(1, 2, 3, sobrenome='University', cargo='Instrutor'))
+
+
+# Desempacotar com **kwargs
+
+def mostrar_nomes(**kwargs):
+    return(f'{kwargs['nome']} {kwargs['sobrenome']}')
+
+nomes = {'nome': 'Felicity', 'sobrenome': 'Jones'}
+
+#print(mostrar_nomes(nome='Felicity', sobrenome='Jones'))
+print(mostrar_nomes(**nomes))
+
+"""
+
+
+# Desempacotar com **kwargs
+
+def soma_multiplos_numeros(a, b, c, **kwargs):
+    print(a + b + c)
+    print(kwargs)
+
+lista = [1, 2, 3]
+tupla = (1, 2, 3)
+conjunto = {1, 2, 3}
+
+soma_multiplos_numeros(*lista)
+soma_multiplos_numeros(*tupla)
+soma_multiplos_numeros(*conjunto)
+
+dicionario = dict(a=1, b=2, c=3)
+
+soma_multiplos_numeros(**dicionario)
+
+# OBS: Os nomes da chave em um dicionário devem ser o mesmo dos parâmetros da função
+#dicionario = dict(d=1, e=2, f=3) #TypeError
+#soma_multiplos_numeros(**dicionario) #TypeError
+
+dicionario = dict(a=1, b=2, c=3, nome='Geek')
+
+soma_multiplos_numeros(**dicionario, lang='Python') # tem que colocar o **kwargs na função
 
 
 
